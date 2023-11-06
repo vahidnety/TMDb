@@ -95,7 +95,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             case .success(let image):
                 DispatchQueue.main.async {
                     cell.configure(with: movie, image: image)
-                    cell.setNeedsLayout()
+//                    cell.setNeedsLayout()
                 }
             case .failure(let error):
                 print("error: \(error.localizedDescription)")

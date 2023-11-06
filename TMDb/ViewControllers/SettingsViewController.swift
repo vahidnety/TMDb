@@ -10,8 +10,8 @@ import UIKit
 class SettingsViewController: UIViewController {
     var viewModel: SettingsViewModelProtocol!
     
-    @IBOutlet private var sortSegmentedControl: UISegmentedControl!
-    @IBOutlet private var filterSegmentedControl: UISegmentedControl!
+    @IBOutlet internal var sortSegmentedControl: UISegmentedControl!
+    @IBOutlet internal var filterSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()

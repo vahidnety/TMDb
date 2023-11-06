@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
 class MovieTableCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!

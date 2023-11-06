@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D37C2222AFAE96500177527 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D37C2212AFAE96500177527 /* SettingsViewControllerTests.swift */; };
+		3D37C2252AFAF7E800177527 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 3D37C2242AFAF7E800177527 /* SkeletonView */; };
 		3D679EC02AF6263C00C7537F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D679EBF2AF6263C00C7537F /* SearchViewController.swift */; };
 		3D679EC22AF6268B00C7537F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D679EC12AF6268B00C7537F /* SearchViewModel.swift */; };
 		3D679EC42AF6A3AB00C7537F /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D679EC32AF6A3AB00C7537F /* SearchResult.swift */; };
@@ -16,10 +18,9 @@
 		3D80A0222AED73CE005181F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A0212AED73CE005181F4 /* SceneDelegate.swift */; };
 		3D80A0242AED73CE005181F4 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A0232AED73CE005181F4 /* MovieListViewController.swift */; };
 		3D80A0272AED73CE005181F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D80A0252AED73CE005181F4 /* Main.storyboard */; };
-		3D80A02A2AED73CE005181F4 /* TMDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A0282AED73CE005181F4 /* TMDb.xcdatamodeld */; };
 		3D80A02C2AED73CF005181F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D80A02B2AED73CF005181F4 /* Assets.xcassets */; };
 		3D80A02F2AED73CF005181F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D80A02D2AED73CF005181F4 /* LaunchScreen.storyboard */; };
-		3D80A03B2AED73CF005181F4 /* TMDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A03A2AED73CF005181F4 /* TMDbTests.swift */; };
+		3D80A03B2AED73CF005181F4 /* MovieListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A03A2AED73CF005181F4 /* MovieListViewControllerTests.swift */; };
 		3D80A0452AED73CF005181F4 /* TMDbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A0442AED73CF005181F4 /* TMDbUITests.swift */; };
 		3D80A0472AED73CF005181F4 /* TMDbUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A0462AED73CF005181F4 /* TMDbUITestsLaunchTests.swift */; };
 		3D80A0542AED749A005181F4 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D80A0532AED749A005181F4 /* MovieService.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D37C2212AFAE96500177527 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
 		3D679EBF2AF6263C00C7537F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3D679EC12AF6268B00C7537F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		3D679EC32AF6A3AB00C7537F /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -67,13 +69,11 @@
 		3D80A0212AED73CE005181F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3D80A0232AED73CE005181F4 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		3D80A0262AED73CE005181F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3D80A0292AED73CE005181F4 /* TMDb.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TMDb.xcdatamodel; sourceTree = "<group>"; };
 		3D80A02B2AED73CF005181F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D80A02E2AED73CF005181F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3D80A0302AED73CF005181F4 /* TMDb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TMDb.entitlements; sourceTree = "<group>"; };
 		3D80A0312AED73CF005181F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D80A0362AED73CF005181F4 /* TMDbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D80A03A2AED73CF005181F4 /* TMDbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbTests.swift; sourceTree = "<group>"; };
+		3D80A03A2AED73CF005181F4 /* MovieListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewControllerTests.swift; sourceTree = "<group>"; };
 		3D80A0402AED73CF005181F4 /* TMDbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D80A0442AED73CF005181F4 /* TMDbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbUITests.swift; sourceTree = "<group>"; };
 		3D80A0462AED73CF005181F4 /* TMDbUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -99,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D37C2252AFAF7E800177527 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,9 +154,7 @@
 				3D80A0252AED73CE005181F4 /* Main.storyboard */,
 				3D80A02B2AED73CF005181F4 /* Assets.xcassets */,
 				3D80A02D2AED73CF005181F4 /* LaunchScreen.storyboard */,
-				3D80A0302AED73CF005181F4 /* TMDb.entitlements */,
 				3D80A0312AED73CF005181F4 /* Info.plist */,
-				3D80A0282AED73CE005181F4 /* TMDb.xcdatamodeld */,
 			);
 			path = TMDb;
 			sourceTree = "<group>";
@@ -163,7 +162,8 @@
 		3D80A0392AED73CF005181F4 /* TMDbTests */ = {
 			isa = PBXGroup;
 			children = (
-				3D80A03A2AED73CF005181F4 /* TMDbTests.swift */,
+				3D80A03A2AED73CF005181F4 /* MovieListViewControllerTests.swift */,
+				3D37C2212AFAE96500177527 /* SettingsViewControllerTests.swift */,
 			);
 			path = TMDbTests;
 			sourceTree = "<group>";
@@ -256,6 +256,9 @@
 			dependencies = (
 			);
 			name = TMDb;
+			packageProductDependencies = (
+				3D37C2242AFAF7E800177527 /* SkeletonView */,
+			);
 			productName = TMDb;
 			productReference = 3D80A01C2AED73CE005181F4 /* TMDb.app */;
 			productType = "com.apple.product-type.application";
@@ -328,6 +331,9 @@
 				Base,
 			);
 			mainGroup = 3D80A0132AED73CE005181F4;
+			packageReferences = (
+				3D37C2232AFAF7E800177527 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+			);
 			productRefGroup = 3D80A01D2AED73CE005181F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -373,7 +379,6 @@
 			files = (
 				3D679EC42AF6A3AB00C7537F /* SearchResult.swift in Sources */,
 				3D80A0582AED74E8005181F4 /* MovieResponse.swift in Sources */,
-				3D80A02A2AED73CE005181F4 /* TMDb.xcdatamodeld in Sources */,
 				3D80A0712AEF4518005181F4 /* AppError.swift in Sources */,
 				3DFCE7082AF4689A00C28AC0 /* MovieDetailViewModel.swift in Sources */,
 				3D80A0242AED73CE005181F4 /* MovieListViewController.swift in Sources */,
@@ -402,7 +407,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D80A03B2AED73CF005181F4 /* TMDbTests.swift in Sources */,
+				3D80A03B2AED73CF005181F4 /* MovieListViewControllerTests.swift in Sources */,
+				3D37C2222AFAE96500177527 /* SettingsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,18 +750,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		3D80A0282AED73CE005181F4 /* TMDb.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3D80A0292AED73CE005181F4 /* TMDb.xcdatamodel */,
-			);
-			currentVersion = 3D80A0292AED73CE005181F4 /* TMDb.xcdatamodel */;
-			path = TMDb.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+/* Begin XCRemoteSwiftPackageReference section */
+		3D37C2232AFAF7E800177527 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.30.4;
+			};
 		};
-/* End XCVersionGroup section */
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3D37C2242AFAF7E800177527 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D37C2232AFAF7E800177527 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3D80A0142AED73CE005181F4 /* Project object */;
 }

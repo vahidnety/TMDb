@@ -25,7 +25,7 @@ class MovieDetailViewController: UIViewController, ErrorHandlingDelegate {
         fetchMovieDetails()
     }
     
-    private func fetchMovieDetails(){
+    internal func fetchMovieDetails(){
         
         // Fetch the list of now playing movies
         // The [weak self] is used to avoid a strong reference cycle (retain cycle)

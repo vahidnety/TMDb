@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SkeletonView
 
 class MovieListViewController: UIViewController, ErrorHandlingDelegate{
     
@@ -27,9 +27,11 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
         setupUI()
         
         addRefresh()
-        
+
         // Fetch now playing movies when the view loads
-        fetchMovies()
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.1) {
+            self.fetchMovies()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,12 +62,12 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
         //        self.startRefreshing(for: self.tableView)
         
         // Handle the refresh action, e.g., fetch new data from the server
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.2) {
+//        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.2) {
             self.fetchMovies()
-        }
+//        }
     }
     
-    private func fetchMovies(){
+    internal func fetchMovies(){
         
         // Fetch the list of now playing movies
         // The [weak self] is used to avoid a strong reference cycle (retain cycle)
@@ -75,6 +77,8 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
             switch result {
                 case .success:
                     DispatchQueue.main.async {
+                        self?.tableView.stopSkeletonAnimation()
+                        self?.tableView.hideSkeleton()
                         self?.tableView.reloadData()
                     }
                 case .failure(let error):
@@ -88,8 +92,14 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
     }
     
     private func setupUI(){
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 170
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.isSkeletonable = true
+        tableView.showAnimatedSkeleton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,7 +136,6 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
             tableView.reloadData()
         }
     }
-    
 }
 
 extension MovieListViewController: UITabBarControllerDelegate {
@@ -139,12 +148,15 @@ extension MovieListViewController: UITabBarControllerDelegate {
     }
 }
 
-extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
-    
+extension MovieListViewController: SkeletonTableViewDataSource, SkeletonTableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.movies.count
     }
     
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "MovieCell"
+    }
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableCell
         let movie = viewModel.movies[indexPath.row]
@@ -158,7 +170,6 @@ extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
                     DispatchQueue.main.async {
                         cell.configure(with: movie, image: image)
                         cell.setNeedsLayout()
-                        
                     }
                 case .failure(let error):
                     print("error: \(error.localizedDescription)")
