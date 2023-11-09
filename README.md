@@ -22,10 +22,10 @@ Movie Explorer App is an iOS application that allows users to browse and explore
 
 ## API Endpoints
 
-- Now Playing List: [TMDb Now Playing](https://api.themoviedb.org/3/movie/now_playing)
-- Movie Details: [TMDb Movie Details](https://api.themoviedb.org/3/movie/{movie_id})
-- Movie Images: [TMDb Movie Images](https://api.themoviedb.org/3/movie/{movie_id}/images)
-- Search Movie: [TMDb Search Movie](https://api.themoviedb.org/3/search/movie)
+- Now Playing List: https://api.themoviedb.org/3/movie/now_playing
+- Movie Details: https://api.themoviedb.org/3/movie/{movie_id}
+- Movie Images: https://api.themoviedb.org/3/movie/{movie_id}/images
+- Search Movie: https://api.themoviedb.org/3/search/movie
 
 ## How to Use
 
