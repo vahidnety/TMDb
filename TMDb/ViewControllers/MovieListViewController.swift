@@ -62,9 +62,9 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
         //        self.startRefreshing(for: self.tableView)
         
         // Handle the refresh action, e.g., fetch new data from the server
-//        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.1) {
             self.fetchMovies()
-//        }
+        }
     }
     
     internal func fetchMovies(){
