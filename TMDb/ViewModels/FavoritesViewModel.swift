@@ -32,7 +32,6 @@ class FavoritesViewModel: FavoritesViewModelProtocol {
         movies = favoritesManager.getFavoriteMovies()
     }
    
-    
     func loadImage(for movie: Movie, completion: @escaping (Result<UIImage, AppError>) -> Void) {
         guard let urlPath = movie.posterPath else {
             completion(.success(UIImage(named: "placeholderImage") ?? UIImage()))

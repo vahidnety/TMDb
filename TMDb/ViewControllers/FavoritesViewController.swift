@@ -9,6 +9,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController, ErrorHandlingDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyFavorites: UILabel!
     
     var viewModel: FavoritesViewModelProtocol!
     
@@ -16,16 +17,15 @@ class FavoritesViewController: UIViewController, ErrorHandlingDelegate {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(valueDidChange(_:)), name: Notification.Name("ValueDidChangeNotification"), object: nil)
-
+        
         //Configure Table view
         configureTableView()
         
         // Initialize the viewModel with the MovieService
         viewModel = FavoritesViewModel(favoritesManager: FavoritesManager(),
-                                      moviePlayingService: MovieService())
+                                       moviePlayingService: MovieService())
         
         fetchFavoriteMovies()
-        
     }
     
     deinit{
@@ -43,14 +43,20 @@ class FavoritesViewController: UIViewController, ErrorHandlingDelegate {
             }
         }
     }
-
     
-    private func fetchFavoriteMovies(){
+    private func fetchFavoriteMovies() {
         NotificationCenter.default.post(name: Notification.Name("ValueDidChangeNotification"), object: nil, userInfo: ["FavoritesChanged": false])
         
         // Get favorite movies when the view loads
         viewModel.getFavoriteMovies()
         tableView.reloadData()
+        
+        if tableView.numberOfRows(inSection: 0) > 0 {
+            emptyFavorites.isHidden = true
+        }
+        else {
+            emptyFavorites.isHidden = false
+        }
     }
     
     private func configureTableView(){
@@ -92,13 +98,13 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         viewModel.loadImage(for: movie) { result in
             switch result {
-            case .success(let image):
-                DispatchQueue.main.async {
-                    cell.configure(with: movie, image: image)
-//                    cell.setNeedsLayout()
-                }
-            case .failure(let error):
-                print("error: \(error.localizedDescription)")
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        cell.configure(with: movie, image: image)
+                        //                    cell.setNeedsLayout()
+                    }
+                case .failure(let error):
+                    print("error: \(error.localizedDescription)")
             }
             cell.stopLoading()
         }

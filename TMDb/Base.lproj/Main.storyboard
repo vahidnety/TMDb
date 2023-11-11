@@ -190,7 +190,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vub-cq-VwQ">
                                         <rect key="frame" x="0.0" y="140" width="373" height="300"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wA8-gJ-WsW">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wA8-gJ-WsW">
                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="300"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -361,6 +361,12 @@
                                     <outlet property="delegate" destination="tc0-mo-ETD" id="fik-ai-7Tt"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No favorite movie found..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agN-lA-n1j">
+                                <rect key="frame" x="99" y="416" width="195" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wSq-7G-tOL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -368,11 +374,14 @@
                             <constraint firstItem="wSq-7G-tOL" firstAttribute="trailing" secondItem="mGN-RY-YLF" secondAttribute="trailing" id="3gi-Jc-Vye"/>
                             <constraint firstItem="mGN-RY-YLF" firstAttribute="top" secondItem="wSq-7G-tOL" secondAttribute="top" id="BOF-28-X5K"/>
                             <constraint firstItem="mGN-RY-YLF" firstAttribute="leading" secondItem="wSq-7G-tOL" secondAttribute="leading" id="FZS-XG-wkM"/>
+                            <constraint firstItem="agN-lA-n1j" firstAttribute="centerY" secondItem="2fe-bZ-dmQ" secondAttribute="centerY" id="I4l-vX-JPK"/>
                             <constraint firstAttribute="bottom" secondItem="mGN-RY-YLF" secondAttribute="bottom" id="V2K-ZB-k4g"/>
+                            <constraint firstItem="agN-lA-n1j" firstAttribute="centerX" secondItem="2fe-bZ-dmQ" secondAttribute="centerX" id="pAw-Hj-EmN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="emQ-Wx-sAi"/>
                     <connections>
+                        <outlet property="emptyFavorites" destination="agN-lA-n1j" id="af1-gl-aWr"/>
                         <outlet property="tableView" destination="mGN-RY-YLF" id="eaz-8J-oOS"/>
                     </connections>
                 </viewController>
@@ -604,7 +613,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qlu-WU-zBk"/>
+        <segue reference="OWY-DJ-hl1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>

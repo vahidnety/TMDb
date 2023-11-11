@@ -12,12 +12,14 @@ protocol MovieDetailViewModelProtocol {
     var movieDetail: MovieDetail? { get }
     var isFavorite: Bool { get }
     var errorDelegate: ErrorHandlingDelegate? { get set }
-
+    
     func fetchMovieDetails(completion: @escaping (Result<Void, AppError>) -> Void)
     func toggleFavoriteStatus()
+    func getFavoriteStatus()
 }
 
 class MovieDetailViewModel: MovieDetailViewModelProtocol {
+    
     private let movieDetailsService: MovieDetailsServiceProtocol
     private let favoritesManager: FavoritesManagerProtocol
     private(set) var movie: Movie
@@ -40,6 +42,7 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
             [weak self] result in
             switch result {
                 case .success(let movieDetail):
+                    self?.getFavoriteStatus()
                     self?.movieDetail = movieDetail
                     completion(.success(()))
                 case .failure(let error):
@@ -48,6 +51,10 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
                     completion(.failure(error))
             }
         }
+    }
+    
+    func getFavoriteStatus() {
+        self.isFavorite = favoritesManager.isMovieFavorite(movie)
     }
     
     func toggleFavoriteStatus() {

@@ -14,7 +14,7 @@ protocol FavoritesManagerProtocol {
     func isMovieFavorite(_ movie: Movie) -> Bool
 }
 
-class FavoritesManager: FavoritesManagerProtocol {    
+class FavoritesManager: FavoritesManagerProtocol {
     
     private let userDefaults = UserDefaults.standard
     private let favoritesKey = "FavoriteMovies"
@@ -55,7 +55,6 @@ class FavoritesManager: FavoritesManagerProtocol {
         if let encodedData = try? encoder.encode(favoriteMovies) {
             userDefaults.set(encodedData, forKey: favoritesKey)
             NotificationCenter.default.post(name: Notification.Name("ValueDidChangeNotification"), object: nil, userInfo: ["FavoritesChanged": true])
-
         }
     }
 }

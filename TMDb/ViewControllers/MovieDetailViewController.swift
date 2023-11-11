@@ -7,9 +7,10 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController, ErrorHandlingDelegate {
+class MovieDetailViewController: UIViewController, ErrorHandlingDelegate  {
+    
     var viewModel: MovieDetailViewModelProtocol!
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var homepageLabel: UILabel!
@@ -22,11 +23,19 @@ class MovieDetailViewController: UIViewController, ErrorHandlingDelegate {
         
         viewModel.errorDelegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesDidChange), name: Notification.Name("ValueDidChangeNotification"), object: nil)
         fetchMovieDetails()
     }
     
+    @objc func favoritesDidChange() {
+        fetchMovieDetails()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("ValueDidChangeNotification"), object: nil)
+    }
+    
     internal func fetchMovieDetails(){
-        
         // Fetch the list of now playing movies
         // The [weak self] is used to avoid a strong reference cycle (retain cycle)
         // and ensure that self (the view controller) can be deallocated when it's no longer needed.
@@ -59,13 +68,12 @@ class MovieDetailViewController: UIViewController, ErrorHandlingDelegate {
         } else {
             favoriteButton.setTitle("Add to Favorites", for: .normal)
         }
-        
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
         if (viewModel.isFavorite && ((sender.titleLabel?.text?.contains("Add")) != nil)) || (!viewModel.isFavorite && ((sender.titleLabel?.text?.contains("Remove")) != nil)){
             
-            NotificationCenter.default.post(name: Notification.Name("FavoriteStatusChanged"), object: true)
+            NotificationCenter.default.post(name: Notification.Name("ValueDidChangeNotification"), object: nil, userInfo: ["FavoritesChanged": true])
         }
         
         viewModel.toggleFavoriteStatus()
