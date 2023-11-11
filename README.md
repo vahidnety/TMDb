@@ -1,3 +1,5 @@
+<a href="https://www.buymeacoffee.com/vahidnety" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
 # TMDb: Movie Explorer App
 
 Movie Explorer App is an iOS application that allows users to browse and explore information about movies, view details, and manage their favorites list. The app uses The Movie Database (TMDb) API to fetch movie information.
@@ -22,10 +24,10 @@ Movie Explorer App is an iOS application that allows users to browse and explore
 
 ## API Endpoints
 
-- Now Playing List: [TMDb Now Playing](https://api.themoviedb.org/3/movie/now_playing)
-- Movie Details: [TMDb Movie Details](https://api.themoviedb.org/3/movie/{movie_id})
-- Movie Images: [TMDb Movie Images](https://api.themoviedb.org/3/movie/{movie_id}/images)
-- Search Movie: [TMDb Search Movie](https://api.themoviedb.org/3/search/movie)
+- Now Playing List: https://api.themoviedb.org/3/movie/now_playing
+- Movie Details: https://api.themoviedb.org/3/movie/{movie_id}
+- Movie Images: https://api.themoviedb.org/3/movie/{movie_id}/images
+- Search Movie: https://api.themoviedb.org/3/search/movie
 
 ## How to Use
 
