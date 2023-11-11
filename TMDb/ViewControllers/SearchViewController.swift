@@ -7,12 +7,14 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
-class SearchViewController: UIViewController, ErrorHandlingDelegate{//?, SettingsViewModelDelegate {
+class SearchViewController: UIViewController, ErrorHandlingDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var emptyResults: UILabel!
     var viewModel: SearchViewModelProtocol!
     var settingsViewModel: SettingsViewModelProtocol!
     var sortOption: SortOption = SortOption(rawValue: 0)!
@@ -34,8 +36,6 @@ class SearchViewController: UIViewController, ErrorHandlingDelegate{//?, Setting
     }
     
     private func initialisation(){
-//        settingsViewModel = SettingsViewModel()
-//        settingsViewModel.delegate = self
         self.tabBarController?.delegate = self
         
         // Initialize the viewModel with the MovieService
@@ -44,17 +44,20 @@ class SearchViewController: UIViewController, ErrorHandlingDelegate{//?, Setting
     }
     
     private func setupUI() {
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 170
+        
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.isSkeletonable = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let selectedMovie = viewModel.searchResults[indexPath.row]
-                //delegate?.didSelectMovie(selectedMovie)
-                
                 if let detailVC = segue.destination as? MovieDetailViewController {
                     let detailViewModel = MovieDetailViewModel(
                         movie: selectedMovie,
@@ -91,7 +94,7 @@ extension SearchViewController: UITabBarControllerDelegate {
     }
 }
 
-extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource  {
+extension SearchViewController: UISearchBarDelegate, SkeletonTableViewDataSource, SkeletonTableViewDelegate {
     // MARK: - UISearchBarDelegate
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -105,6 +108,10 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.searchResults.count
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "MovieCell"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,20 +138,49 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITabl
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = viewModel.searchResults.count - 1
+        if indexPath.row == lastElement {
+            viewModel.fetchNextPageOfSearchMovies(page:1, sortOption: sortOption.description, filterOption: filterOption.description, query: searchBar.text ?? ""){
+                [weak self] result in
+                switch result {
+                    case .success:
+                        DispatchQueue.main.async {
+                            self?.tableView.stopSkeletonAnimation()
+                            self?.tableView.hideSkeleton()
+                            self?.tableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
     // MARK: - Helper Methods
     
     func searchMovies(withQuery query: String) {
-        viewModel.searchMovies(sortOption: sortOption.description, filterOption: filterOption.description,
+        tableView.showAnimatedSkeleton()
+
+        viewModel.searchMovies(page:1, sortOption: sortOption.description, filterOption: filterOption.description,
                                query: query){
             [weak self] result in
             switch result {
                 case .success:
                     DispatchQueue.main.async {
+                        self?.tableView.stopSkeletonAnimation()
+                        self?.tableView.hideSkeleton()
                         self?.tableView.reloadData()
                     }
                 case .failure(let error):
                     print("error: \(error.localizedDescription)")
             }
+        }
+        if tableView.numberOfRows(inSection: 0) > 0 {
+            emptyResults.isHidden = true
+        }
+        else {
+            emptyResults.isHidden = false
         }
     }
 }

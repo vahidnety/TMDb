@@ -16,7 +16,6 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
     var settingsViewModel: SettingsViewModelProtocol!
     var sortOption: SortOption = SortOption(rawValue: 0)!
     var filterOption: FilterOption = FilterOption(rawValue: 0)!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,7 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
         setupUI()
         
         addRefresh()
-
+        
         // Fetch now playing movies when the view loads
         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.1) {
             self.fetchMovies()
@@ -72,7 +71,7 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
         // Fetch the list of now playing movies
         // The [weak self] is used to avoid a strong reference cycle (retain cycle)
         // and ensure that self (the view controller) can be deallocated when it's no longer needed.
-        viewModel.fetchNowPlayingMovies(sortOption: sortOption.description, filterOption: filterOption.description){
+        viewModel.fetchNowPlayingMovies(page: 1, sortOption: sortOption.description, filterOption: filterOption.description){
             [weak self] result in
             switch result {
                 case .success:
@@ -127,7 +126,7 @@ class MovieListViewController: UIViewController, ErrorHandlingDelegate{
     func extractFilterSortOptionsUpdateTable() {
         let newSortOption = settingsViewModel.sortOption
         let newFilterOption = settingsViewModel.filterOption
-
+        
         if sortOption != newSortOption || filterOption != newFilterOption {
             sortOption = newSortOption
             filterOption = newFilterOption
@@ -156,7 +155,7 @@ extension MovieListViewController: SkeletonTableViewDataSource, SkeletonTableVie
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "MovieCell"
     }
-        
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableCell
         let movie = viewModel.movies[indexPath.row]
@@ -177,6 +176,25 @@ extension MovieListViewController: SkeletonTableViewDataSource, SkeletonTableVie
             cell.stopLoading()
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = viewModel.movies.count - 1
+        if indexPath.row == lastElement {
+            viewModel.fetchNextPageOfMovies(sortOption: sortOption.description, filterOption: filterOption.description){
+                [weak self] result in
+                switch result {
+                    case .success:
+                        DispatchQueue.main.async {
+                            self?.tableView.stopSkeletonAnimation()
+                            self?.tableView.hideSkeleton()
+                            self?.tableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("error: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }
 

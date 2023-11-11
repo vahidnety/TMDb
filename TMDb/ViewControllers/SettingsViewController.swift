@@ -20,8 +20,8 @@ class SettingsViewController: UIViewController {
     
     private func setupUI() {
         // Set up UI elements based on the viewModel's settings
-        sortSegmentedControl.selectedSegmentIndex = viewModel.sortOption.rawValue
-        filterSegmentedControl.selectedSegmentIndex = viewModel.filterOption.rawValue
+        sortSegmentedControl.selectedSegmentIndex = viewModel?.sortOption.rawValue ?? 0
+        filterSegmentedControl.selectedSegmentIndex = viewModel?.filterOption.rawValue ?? 0
     }
     
     @IBAction func sortOptionChanged(_ sender: UISegmentedControl) {

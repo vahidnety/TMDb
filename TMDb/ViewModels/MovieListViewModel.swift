@@ -12,15 +12,18 @@ protocol MovieListViewModelProtocol {
     var movies: [Movie] { get }
     var errorDelegate: ErrorHandlingDelegate? { get set }
     
-    func fetchNowPlayingMovies(sortOption: String?, filterOption: String?,
+    func fetchNowPlayingMovies(page: Int, sortOption: String?, filterOption: String?,
                                completion: @escaping (Result<Void, AppError>) -> Void)
     func loadImage(for movie: Movie, completion: @escaping (Result<UIImage, AppError>) -> Void)
+    func fetchNextPageOfMovies(sortOption: String?, filterOption: String?,
+                               completion: @escaping (Result<Void, AppError>) -> Void)
 }
 
 
 class MovieListViewModel: MovieListViewModelProtocol {
     
     private let moviePlayingService: MoviePlayingServiceProtocol
+    private var currentPage: Int = 1
     
     private(set) var movies: [Movie] = []
     
@@ -30,9 +33,26 @@ class MovieListViewModel: MovieListViewModelProtocol {
         self.moviePlayingService = moviePlayingService
     }
     
-    func fetchNowPlayingMovies(sortOption: String?, filterOption: String?,
+    func fetchNextPageOfMovies(sortOption: String?, filterOption: String?,
                                completion: @escaping (Result<Void, AppError>) -> Void){
-        moviePlayingService.fetchNowPlayingMovies(sortOption: sortOption, filterOption: filterOption) {
+        currentPage += 1
+        moviePlayingService.fetchNowPlayingMovies(page: currentPage, sortOption: sortOption, filterOption: filterOption) {
+            [weak self] result in
+            switch result {
+                case .success(let movies):
+                    self?.movies.append(contentsOf: movies)
+                    completion(.success(()))
+                case .failure(let error):
+                    // Handle error and pass it to the view
+                    self?.errorDelegate?.viewModelDidFail(with: error)
+                    completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchNowPlayingMovies(page: Int, sortOption: String?, filterOption: String?,
+                               completion: @escaping (Result<Void, AppError>) -> Void){
+        moviePlayingService.fetchNowPlayingMovies(page: page, sortOption: sortOption, filterOption: filterOption) {
             [weak self] result in
             switch result {
                 case .success(let movies):

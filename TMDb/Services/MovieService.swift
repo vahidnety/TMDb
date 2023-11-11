@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MoviePlayingServiceProtocol {
-    func fetchNowPlayingMovies(sortOption: String?, filterOption: String?,
+    func fetchNowPlayingMovies(page: Int, sortOption: String?, filterOption: String?,
                                completion: @escaping (Result<[Movie], AppError>) -> Void)
     func downloadMovieImage(from endpointString: String?, completion: @escaping (Result<UIImage, AppError>) -> Void)
 }
@@ -19,7 +19,7 @@ protocol MovieDetailsServiceProtocol {
 }
 
 protocol SearchServiceProtocol {
-    func searchMovies(sortOption: String?, filterOption: String?,
+    func searchMovies(page: Int, sortOption: String?, filterOption: String?,
                       withQuery query: String, completion: @escaping (Result<[Movie], AppError>) -> Void)
 }
 
@@ -36,7 +36,7 @@ class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, Se
         self.cache = cache
     }
     
-    func fetchNowPlayingMovies(sortOption: String?, filterOption: String?,
+    func fetchNowPlayingMovies(page: Int, sortOption: String?, filterOption: String?,
                                completion: @escaping (Result<[Movie], AppError>) -> Void) {
         let sortOption = sortOption == nil || sortOption == "defaultSort" ? "" : "&sort_by=" + sortOption!.lowercased() + ".desc"
         let filterOption = filterOption == nil || filterOption == "defaultFilter" ? "" : "&year=" + filterOption!.lowercased()
@@ -48,7 +48,7 @@ class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, Se
         if sortOption != "" || filterOption != "" {
             discovery = "discover/movie"
         }
-        let url = URL(string: "\(baseURL)\(discovery)?api_key=\(apiKey)\(sortOption)\(filterOption)")!
+        let url = URL(string: "\(baseURL)\(discovery)?page=\(page)&api_key=\(apiKey)\(sortOption)\(filterOption)")!
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
                 do {
@@ -115,12 +115,12 @@ class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, Se
         task.resume()
     }
     
-    func searchMovies(sortOption: String?, filterOption: String?,
+    func searchMovies(page: Int, sortOption: String?, filterOption: String?,
                       withQuery query: String, completion: @escaping (Result<[Movie], AppError>) -> Void) {
         let sortOption = sortOption == nil || sortOption == "defaultSort" ? "" : "&sort_by=" + sortOption!.lowercased() + ".desc"
         let filterOption = filterOption == nil || filterOption == "defaultFilter" ? "" : "&year=" + filterOption!.lowercased()
-
-        let urlString = baseURL + "search/movie" + "?query=\(query)" + "&api_key=\(apiKey)" + "\(sortOption)\(filterOption)"
+        
+        let urlString = baseURL + "search/movie" + "?query=\(query)" + "&page=\(page)" + "&api_key=\(apiKey)" + "\(sortOption)\(filterOption)"
         guard let url = URL(string: urlString) else {
             completion(.failure(AppError.networkError))
             return
@@ -136,7 +136,7 @@ class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, Se
                 completion(.failure(AppError.dataNotFound))
                 return
             }
-             
+            
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
