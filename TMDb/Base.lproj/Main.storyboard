@@ -596,6 +596,7 @@
                                             <outlet property="releaseDateLabel" destination="UC7-Cp-wJj" id="eAq-J8-nDJ"/>
                                             <outlet property="summaryLabel" destination="TTx-OL-lxF" id="uyH-dS-hL6"/>
                                             <outlet property="titleLabel" destination="Hss-Ld-Vr5" id="WCz-Lu-mK7"/>
+                                            <segue destination="BDb-8n-mFj" kind="show" identifier="ShowDetail" id="1WM-va-zzd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -660,7 +661,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qlu-WU-zBk"/>
+        <segue reference="1WM-va-zzd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>
