@@ -1,3 +1,5 @@
+If you found this code useful, you can make me happy by clicking on the button below and buying me a coffee from https://www.buymeacoffee.com/vahidnety 
+Thank you
 <a href="https://www.buymeacoffee.com/vahidnety" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 # TMDb: Movie Explorer App
@@ -6,7 +8,7 @@ Movie Explorer App is an iOS application that allows users to browse and explore
 
 ## Features
 
-- **Now Playing List:** Browse a list of now playing movies with titles, release dates, and brief summaries.
+- **Now Playing List:** Browse a list of now-playing movies with titles, release dates, and brief summaries.
 - **Detailed Information:** View detailed information about each movie, including director, cast, and plot summary.
 - **Favorites Functionality:** Add movies to your favorites list and view the list of favorited movies.
 - **Search Functionality:** Search for movies by title.
