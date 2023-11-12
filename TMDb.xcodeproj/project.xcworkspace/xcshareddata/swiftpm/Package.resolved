@@ -8,6 +8,15 @@
         "revision" : "739a4f5d78731bebc48811c75fa9e1f4c4cef23e",
         "version" : "1.30.4"
       }
+    },
+    {
+      "identity" : "youtubeplayer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NicholasMata/YoutubePlayer",
+      "state" : {
+        "revision" : "7e22c09b4b6d9e9ba905c5e8757ecad400cf870a",
+        "version" : "0.5.5"
+      }
     }
   ],
   "version" : 2

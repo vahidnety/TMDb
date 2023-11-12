@@ -16,6 +16,7 @@ protocol MoviePlayingServiceProtocol {
 
 protocol MovieDetailsServiceProtocol {
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetail, AppError>) -> Void)
+    func fetchMovieTrailers(movieID: Int, completion: @escaping (Result<[MovieTrailer], AppError>) -> Void)
 }
 
 protocol SearchServiceProtocol {
@@ -23,7 +24,7 @@ protocol SearchServiceProtocol {
                       withQuery query: String, completion: @escaping (Result<[Movie], AppError>) -> Void)
 }
 
-class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, SearchServiceProtocol  {
+class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, SearchServiceProtocol {
     private let apiKey = "8765536cf9830a3ff1945261baabe026"
     private let baseURL = "https://api.themoviedb.org/3/"
     private let baseImageURL = "https://image.tmdb.org/t/p/w500"
@@ -84,6 +85,27 @@ class MovieService: MoviePlayingServiceProtocol, MovieDetailsServiceProtocol, Se
                 }
             }.resume()
         }
+    }
+    
+    func fetchMovieTrailers(movieID: Int, completion: @escaping (Result<[MovieTrailer], AppError>) -> Void) {
+        let urlString = "\(baseURL)movie/\(movieID)/videos?api_key=\(apiKey)"
+        guard let url = URL(string: urlString) else {
+            completion(.failure(AppError.other("URL String error!")))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                do {
+                    let movieTrailers = try JSONDecoder().decode(MovieTrailersResponse.self, from: data)
+                    completion(.success(movieTrailers.results))
+                } catch {
+                    completion(.failure(AppError.parsingError))
+                }
+            } else if let error = error {
+                completion(.failure(AppError.other(error.localizedDescription)))
+            }
+        }.resume()
     }
     
     func downloadMovieImage(from endpointString: String?, completion: @escaping (Result<UIImage, AppError>) -> Void) {

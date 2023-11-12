@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3D37C2222AFAE96500177527 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D37C2212AFAE96500177527 /* SettingsViewControllerTests.swift */; };
-		3D37C2252AFAF7E800177527 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 3D37C2242AFAF7E800177527 /* SkeletonView */; };
+		3D65B3B82B0031DB00567B43 /* MovieTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B3B72B0031DB00567B43 /* MovieTrailer.swift */; };
+		3D65B3BA2B0044D700567B43 /* MovieTrailersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B3B92B0044D700567B43 /* MovieTrailersResponse.swift */; };
 		3D679EC02AF6263C00C7537F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D679EBF2AF6263C00C7537F /* SearchViewController.swift */; };
 		3D679EC22AF6268B00C7537F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D679EC12AF6268B00C7537F /* SearchViewModel.swift */; };
 		3D679EC42AF6A3AB00C7537F /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D679EC32AF6A3AB00C7537F /* SearchResult.swift */; };
@@ -37,6 +38,8 @@
 		3DB08BF92AF447FD006AFB4A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB08BF82AF447FD006AFB4A /* FavoritesViewController.swift */; };
 		3DE1AB042AF1849500524D03 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1AB032AF1849500524D03 /* UIViewController+Alert.swift */; };
 		3DE1AB092AF1FDCB00524D03 /* UIViewController+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1AB082AF1FDCB00524D03 /* UIViewController+Refresh.swift */; };
+		3DF987D32B00A1E400C3E52D /* YoutubePlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF987D22B00A1E400C3E52D /* YoutubePlayer */; };
+		3DF987D62B00A30900C3E52D /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF987D52B00A30900C3E52D /* SkeletonView */; };
 		3DFCE7082AF4689A00C28AC0 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCE7072AF4689A00C28AC0 /* MovieDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		3D37C2212AFAE96500177527 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		3D65B3B72B0031DB00567B43 /* MovieTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailer.swift; sourceTree = "<group>"; };
+		3D65B3B92B0044D700567B43 /* MovieTrailersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailersResponse.swift; sourceTree = "<group>"; };
 		3D679EBF2AF6263C00C7537F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3D679EC12AF6268B00C7537F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		3D679EC32AF6A3AB00C7537F /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -99,7 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D37C2252AFAF7E800177527 /* SkeletonView in Frameworks */,
+				3DF987D62B00A30900C3E52D /* SkeletonView in Frameworks */,
+				3DF987D32B00A1E400C3E52D /* YoutubePlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +190,8 @@
 				3D80A0572AED74E8005181F4 /* MovieResponse.swift */,
 				3D679EC32AF6A3AB00C7537F /* SearchResult.swift */,
 				3D80A0642AED810C005181F4 /* MovieDetail.swift */,
+				3D65B3B72B0031DB00567B43 /* MovieTrailer.swift */,
+				3D65B3B92B0044D700567B43 /* MovieTrailersResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -257,7 +265,8 @@
 			);
 			name = TMDb;
 			packageProductDependencies = (
-				3D37C2242AFAF7E800177527 /* SkeletonView */,
+				3DF987D22B00A1E400C3E52D /* YoutubePlayer */,
+				3DF987D52B00A30900C3E52D /* SkeletonView */,
 			);
 			productName = TMDb;
 			productReference = 3D80A01C2AED73CE005181F4 /* TMDb.app */;
@@ -332,7 +341,8 @@
 			);
 			mainGroup = 3D80A0132AED73CE005181F4;
 			packageReferences = (
-				3D37C2232AFAF7E800177527 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				3DF987D12B00A1E400C3E52D /* XCRemoteSwiftPackageReference "YoutubePlayer" */,
+				3DF987D42B00A30900C3E52D /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 3D80A01D2AED73CE005181F4 /* Products */;
 			projectDirPath = "";
@@ -379,12 +389,14 @@
 			files = (
 				3D679EC42AF6A3AB00C7537F /* SearchResult.swift in Sources */,
 				3D80A0582AED74E8005181F4 /* MovieResponse.swift in Sources */,
+				3D65B3BA2B0044D700567B43 /* MovieTrailersResponse.swift in Sources */,
 				3D80A0712AEF4518005181F4 /* AppError.swift in Sources */,
 				3DFCE7082AF4689A00C28AC0 /* MovieDetailViewModel.swift in Sources */,
 				3D80A0242AED73CE005181F4 /* MovieListViewController.swift in Sources */,
 				3D80A05D2AED7580005181F4 /* MovieListViewModel.swift in Sources */,
 				3D80A0562AED74D4005181F4 /* Movie.swift in Sources */,
 				3DE1AB042AF1849500524D03 /* UIViewController+Alert.swift in Sources */,
+				3D65B3B82B0031DB00567B43 /* MovieTrailer.swift in Sources */,
 				3D80A0202AED73CE005181F4 /* AppDelegate.swift in Sources */,
 				3D80A0632AED7B63005181F4 /* MovieDetailViewController.swift in Sources */,
 				3D679EC02AF6263C00C7537F /* SearchViewController.swift in Sources */,
@@ -751,7 +763,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3D37C2232AFAF7E800177527 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+		3DF987D12B00A1E400C3E52D /* XCRemoteSwiftPackageReference "YoutubePlayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NicholasMata/YoutubePlayer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.5;
+			};
+		};
+		3DF987D42B00A30900C3E52D /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
 			requirement = {
@@ -762,9 +782,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3D37C2242AFAF7E800177527 /* SkeletonView */ = {
+		3DF987D22B00A1E400C3E52D /* YoutubePlayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3D37C2232AFAF7E800177527 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			package = 3DF987D12B00A1E400C3E52D /* XCRemoteSwiftPackageReference "YoutubePlayer" */;
+			productName = YoutubePlayer;
+		};
+		3DF987D52B00A30900C3E52D /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DF987D42B00A30900C3E52D /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
 		};
 /* End XCSwiftPackageProductDependency section */
